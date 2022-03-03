@@ -33,19 +33,22 @@ public class CharacterControllerMovement : MonoBehaviour
     {
         if (controller.isGrounded)
         {
+            jumpCount = 0;
             animator.SetBool("Jumping", false);
             velocity.y = -1f;
             if (Input.GetButtonDown("Jump"))
             {
-                velocity.y = jumpForce;
-                //animator.SetBool("Jumping", true);
+                velocity.y += jumpForce;
+                jumpCount++;
+                animator.SetBool("Jumping", true);
             }
-        } else if (doubleJumpActive) {
+        } else if (doubleJumpActive && jumpCount < 2) {
             if (Input.GetButtonDown("Jump"))
             {
                 Debug.Log("Double jump");
-                velocity.y = jumpForce;
-                //animator.SetBool("Jumping", true);
+                velocity.y += jumpForce;
+                jumpCount++;
+                animator.SetBool("Jumping", true);
             }
         } else
         {

@@ -375,7 +375,8 @@ MonoBehaviour:
   rotationSpeed: 1000
   jumpForce: 10
   gravity: -9.81
-  doubleJumpActive: 1
+  doubleJumpActive: 0
+  hasPowerUp: 0
 --- !u!1 &834359649
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,10 +913,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpEffect: {fileID: 2483505045996673322, guid: 4afbad2df2fbdcd4c9dca0d63ec23a00, type: 3}
-  duration: 4
+  powerUpIcon: {fileID: 2037193884}
+  duration: 5
   isDoubleJump: 0
   isSpeedBoost: 1
-  speedMultiplier: 2
+  speedMultiplier: 3
 --- !u!135 &1305302792
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1026,7 +1028,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpEffect: {fileID: 2483505045996673322, guid: 33f6b08c9d42f804fa71604800640676, type: 3}
-  duration: 4
+  powerUpIcon: {fileID: 1527205449}
+  duration: 5
   isDoubleJump: 1
   isSpeedBoost: 0
   speedMultiplier: 2
