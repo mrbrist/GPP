@@ -13,6 +13,10 @@ public class PowerUpController : MonoBehaviour
     [Space]
     public bool isSpeedBoost;
     public float speedMultiplier;
+    [Space]
+    public bool isSizeIncrease;
+    public float sizeMultiplier;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -63,6 +67,24 @@ public class PowerUpController : MonoBehaviour
 
                 // Remove effect
                 player.GetComponent<CharacterControllerMovement>().doubleJumpActive = false;
+                player.GetComponent<CharacterControllerMovement>().hasPowerUp = false;
+            }
+
+            if (isSizeIncrease)
+            {
+                // Apply effect
+                player.transform.localScale *= sizeMultiplier;
+                player.GetComponent<CharacterControllerMovement>().hasPowerUp = true;
+
+                // Disable components for powerup
+                GetComponent<MeshRenderer>().enabled = false;
+                GetComponent<Collider>().enabled = false;
+
+                // Wait for effect to run out
+                yield return new WaitForSeconds(duration);
+
+                // Remove effect
+                player.transform.localScale /= sizeMultiplier;
                 player.GetComponent<CharacterControllerMovement>().hasPowerUp = false;
             }
 
