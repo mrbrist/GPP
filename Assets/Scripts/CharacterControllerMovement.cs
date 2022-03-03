@@ -7,16 +7,19 @@ public class CharacterControllerMovement : MonoBehaviour
     private Vector3 movementInput;
     private Vector3 velocity;
     private float speed;
+    private int jumpCount;
 
     [SerializeField] private CharacterController controller;
     [SerializeField] private Animator animator;
     [Space]
-    [SerializeField] private float runSpeed;
+    [SerializeField] public float runSpeed;
     [SerializeField] private float walkSpeed;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float gravity = 9.81f;
-
+    [Space]
+    public bool doubleJumpActive;
+    public bool hasPowerUp;
 
     // Update is called once per frame
     void Update()
@@ -31,13 +34,18 @@ public class CharacterControllerMovement : MonoBehaviour
         if (controller.isGrounded)
         {
             animator.SetBool("Jumping", false);
-            animator.SetBool("isGrounded", true);
             velocity.y = -1f;
-            if (Input.GetButton("Jump"))
+            if (Input.GetButtonDown("Jump"))
             {
                 velocity.y = jumpForce;
-                animator.SetBool("Jumping", true);
-                animator.SetBool("isGrounded", false);
+                //animator.SetBool("Jumping", true);
+            }
+        } else if (doubleJumpActive) {
+            if (Input.GetButtonDown("Jump"))
+            {
+                Debug.Log("Double jump");
+                velocity.y = jumpForce;
+                //animator.SetBool("Jumping", true);
             }
         } else
         {
